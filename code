@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фарбування комірок таблиці</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <table id="table">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+    <button id="colorButton">Фарбувати комірку</button>
+
+    <script>
+        document.getElementById('colorButton').addEventListener('click', function() {
+            const cells = document.querySelectorAll('#table td');
+            const uncoloredCells = Array.from(cells).filter(cell => !cell.classList.contains('red'));
+
+            if (uncoloredCells.length === 0) {
+                alert('Усі комірки вже зафарбовані!');
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * uncoloredCells.length);
+            uncoloredCells[randomIndex].classList.add('red');
+        });
+    </script>
+
+</body>
+</html>
